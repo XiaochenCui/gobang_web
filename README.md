@@ -7,11 +7,16 @@
 
 ## Run game server
 
+```bash
 ./run-server
+```
 
 ## Run game client
 
+
+```bash
 ./run-client
+```
 
 # Reference project
 

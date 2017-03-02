@@ -98,11 +98,11 @@ class GameClientProtocol(JsonReceiver):
             command = 'move'
             params = match.groups()
         else:
-            params = filter(len, string.split(' '))
+            params = list(filter(len, string.split(' ')))
             command, params = params[0], params[1:]
 
         if command not in commands:
-            self.out('invaild command: {}'.format(command))
+            self.out('invalid command: {}'.format(command))
             return
 
         try:
@@ -153,6 +153,12 @@ class GameClientFactory(protocol.ClientFactory):
             reactor.stop()  # @UndefinedVariable
         except error.ReactorNotRunning:
             pass
+
+    def __str__(self):
+        return 'segwggggggggggggggggggggg{s}'. \
+            format(
+            s='ss',
+        )
 
 
 def run_client():

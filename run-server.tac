@@ -1,6 +1,3 @@
-from cxctools.path import add_current_path
-add_current_path()
-
 from twisted.application import internet, service
 from game_server.network.server import GameServerProtocol, GameServerFactory
 

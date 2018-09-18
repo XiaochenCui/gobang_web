@@ -61,8 +61,8 @@ class Game(object):
         Test and verify if the board(row, col) is empty.
 
         Args:
-            row: 
-            col: 
+            row:
+            col:
 
         Returns:
             True for empty, False otherwise.
@@ -83,8 +83,8 @@ class Game(object):
         Test and verify if the location(row, col) in board.
 
         Args:
-            row: 
-            col: 
+            row:
+            col:
 
         Returns:
             True for location(row, col) in board, False otherwise.
@@ -139,6 +139,7 @@ class Game(object):
     @property
     def winner(self):
         """Get winner."""
+        return 0
         return self._winner
 
     def print_board(self):

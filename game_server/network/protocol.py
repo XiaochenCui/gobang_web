@@ -1,13 +1,10 @@
 import json
 from twisted.protocols import basic
 
-from cxctools.string import to_bytes, to_str
-from cxctools.dict import remove_key
-
 
 class JsonReceiver(basic.LineOnlyReceiver):
     def lineReceived(self, data):
-        str_data = to_str(data)
+        str_data = data.decode()
 
         try:
             decode_data = json.loads(str_data)
@@ -31,9 +28,9 @@ class JsonReceiver(basic.LineOnlyReceiver):
 
         command = obj['command']
 
-        params = remove_key(obj, 'command')
+        del obj['command']
 
-        self.receive_command(command, **params)
+        self.receive_command(command, **obj)
 
     def invalid_json_received(self, data):
         pass
@@ -45,7 +42,7 @@ class JsonReceiver(basic.LineOnlyReceiver):
         if kwargs:
             dic.update(kwargs)
         str_data = json.dumps(dic)
-        data = to_bytes(str_data)
+        data = str_data.encode()
 
         print('Data send to {0}:{1}\n'
               '\t{2}'.format(self.peer.host, self.peer.port, data))

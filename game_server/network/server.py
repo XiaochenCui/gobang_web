@@ -49,10 +49,10 @@ class GameServerProtocol(JsonReceiver):
             log.msg('invalid command: {0}'.format(command))
             return
 
-        try:
-            commands[command](**params)
-        except TypeError as e:
-            log.msg('invalid params: {0}'.format(params))
+        # try:
+        commands[command](**params)
+        # except TypeError as e:
+            # log.msg('invalid params: {0}'.format(params), exc_info=True)
 
     def run_make_move_command(self, row, col):
         if self.state == GameServerProtocol.STATE_MAKING_MOVE:

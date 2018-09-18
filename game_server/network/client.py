@@ -1,6 +1,5 @@
 import re
 
-from cxctools.string import to_bytes, to_str
 from twisted.protocols import basic
 from twisted.internet import protocol, stdio
 from twisted.python import log
@@ -13,7 +12,7 @@ from game_server.network.protocol import JsonReceiver
 class UserInputProtocol(basic.LineReceiver):
     from os import linesep as delimiter  # @UnusedImport
 
-    delimiter = to_bytes(delimiter)
+    delimiter = delimiter.encode()
 
     def __init__(self, callback):
         self.callback = callback
@@ -87,7 +86,7 @@ class GameClientProtocol(JsonReceiver):
         :type string: bytes
         """
         # Shorthand for "move" command
-        string = to_str(string)
+        string = string.decode()
 
         commands = {
             'move': self.send_make_move
